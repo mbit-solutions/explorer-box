@@ -43,9 +43,9 @@ def main():
 
     if len(sys.argv) == 5:
         address = sys.argv[1]
-        port = sys.argv[2]
-        threshold_diff = sys.argv[3]
-        reset = sys.argv[4]
+        port = int(sys.argv[2])
+        threshold_diff = int(sys.argv[3])
+        reset = int(sys.argv[4])
         
     get_depth(address, port, threshold_diff, reset)
 
