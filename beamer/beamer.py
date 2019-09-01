@@ -2,6 +2,7 @@ import socket
 import pickle
 import cv2
 import numpy as np
+import sandboxify as sb
 
 PORT = 60000
 SERVER_ADDRESS = ('', PORT)
@@ -27,7 +28,8 @@ def recvall(sock):
     return pickle.loads(b"".join(buffer), encoding=ENCODING)
 
 def display(im):
-    cv2.imshow('sandbox', im)
+    colored = sb.sandboxify(im)
+    cv2.imshow('sandbox', colored)
     return cv2.waitKey(1)
 
 cv2.namedWindow('sandbox')
