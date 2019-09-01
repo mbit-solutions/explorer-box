@@ -5,7 +5,7 @@ import depth
 import time
 import numpy as np
 
-def send(sock, data)
+def send(sock, data):
     data_string = pickle.dumps(data)
     sock.sendall(data_string)
     sock.close()
