@@ -33,7 +33,8 @@ def get_depth(address, port, threshold_diff, reset):
         prev = np.copy(curr)
         send(sock, curr)
         i += 1
-        time.sleep(0.25)
+        time.sleep(0.25)      
+
 
 def main():    
     address = '127.0.0.1'
@@ -45,8 +46,9 @@ def main():
         address = sys.argv[1]
         port = int(sys.argv[2])
         threshold_diff = int(sys.argv[3])
-        reset = int(sys.argv[4])
+        reset = int(sys.argv[4])  
         
-    get_depth(address, port, threshold_diff, reset)
+    get_depth(address, port, threshold_diff, reset)    
+
 
 main()
