@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 
 class Renderer:
-    def __init__(self, config)
+    def __init__(self, config):
         self.config = config
 
     def execute(depth_image):
