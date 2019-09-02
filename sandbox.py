@@ -4,10 +4,11 @@ import cv2
 import time
 
 class Sandbox:
-    def __init__(self, config, kinect):
+    def __init__(self, config, kinect, renderer):
         self.zeros = np.zeros((640, 480))
         self.config = config
         self.kinect = kinect
+        self.renderer = renderer
         
     def execute(self):
         print('starting explorer box')
@@ -38,7 +39,7 @@ class Sandbox:
             previous_depth = np.copy(current_depth)
             
             # display sandbox depth image            
-            cv2.imshow('sandbox', sb.sandboxify(current_depth))
+            cv2.imshow('sandbox', renderer.execute(current_depth))
             key = cv2.waitKey(1)
             if key == 27:
                 break        
