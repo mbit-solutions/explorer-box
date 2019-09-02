@@ -5,7 +5,7 @@ class Renderer:
     def __init__(self, config):
         self.config = config
 
-    def execute(depth_image):
+    def execute(self, depth_image):
         depth_image = interpolate(depth_image)
         depth_image = resize(depth_image)
         depth_image = invert(depth_image)
