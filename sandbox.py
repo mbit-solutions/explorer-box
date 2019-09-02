@@ -39,7 +39,7 @@ class Sandbox:
             previous_depth = np.copy(current_depth)
             
             # display sandbox depth image            
-            cv2.imshow('sandbox', renderer.execute(current_depth))
+            cv2.imshow('sandbox', self.renderer.execute(current_depth))
             key = cv2.waitKey(1)
             if key == 27:
                 break        
