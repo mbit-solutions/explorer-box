@@ -1,4 +1,4 @@
-AR Sandbox
+Explorer Box
 ===========
 Augmented Reality Sandbox - simply mold the sand by hand and the landscape comes to life
 
@@ -17,7 +17,7 @@ sudo apt-get update
 sudo apt-get upgrade
 ```
 
-## Install prerequisites for libusb and libfreenect
+## Install prerequisites
 ```
 sudo apt-get install cmake libudev0 libudev-dev freeglut3 freeglut3-dev libxmu6 libxmu-dev libxi6 libxi-dev git python
 ```
