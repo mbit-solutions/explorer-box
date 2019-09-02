@@ -16,7 +16,7 @@ def get_diff(prev, curr):
     currsubtract = curr.astype(np.int16)
     diff = currsubtract - prevsubtract
     diff[np.where(diff < 0)] *= -1
-    return diff.astype(np.uint8)
+    return diff
 
-def get_depth_image():
-    return pretty_depth_cv(freenect.sync_get_depth()[0])
+def get_depth_image_mm():
+    return freenect.sync_get_depth(0, freenect.DEPTH_MM)[0]
