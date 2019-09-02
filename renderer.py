@@ -6,28 +6,28 @@ class Renderer:
         self.config = config
 
     def execute(self, depth_image):
-        depth_image = interpolate(depth_image)
-        depth_image = resize(depth_image)
-        depth_image = invert(depth_image)
-        poster_image = poster_image(depth_image, 10)
-        color_image = colorize(np.copy(poster_image)) 
-        color_image = blur(color_image)
-        contourize(color_image, poster_image)
+        depth_image = self.interpolate(depth_image)
+        depth_image = self.resize(depth_image)
+        depth_image = self.invert(depth_image)
+        poster_image = self.posterize(depth_image, 10)
+        color_image = self.colorize(np.copy(poster_image)) 
+        color_image = self.blur(color_image)
+        self.contourize(color_image, poster_image)
         return color_image
 
-    def interpolate(im):
+    def interpolate(self, im):
         return np.interp(im,(self.config.depth_mm_min,self.config.depth_mm_max),(0,255)).astype(np.uint8) 
 
-    def resize(im):
+    def resize(self, im):
         return cv2.resize(im, (self.config.window_width, self.config.window_height))  
 
-    def invert(im):
+    def invert(self, im):
         return 255 - im
 
-    def blur(im):
+    def blur(self, im):
         return cv2.GaussianBlur(im,(3,3),0)
 
-    def posterize(im, n):
+    def posterize(self, im, n):
         indices = np.arange(0,256)   # List of all colors 
         divider = np.linspace(0,255,n+1)[1] # we get a divider
         quantiz = np.int0(np.linspace(0,255,n)) # we get quantization colors
@@ -37,7 +37,7 @@ class Renderer:
         im2 = cv2.convertScaleAbs(im2) # Converting image back to uint8
         return im2
 
-    def colorize(im):
+    def colorize(self, im):
         mx = 256  # if gray.dtype==np.uint8 else 65535
         lut = np.empty(shape=(256, 3))
         cmap = (
@@ -68,7 +68,7 @@ class Renderer:
         
         return out
 
-    def contourize( im, src ):
+    def contourize(self, im, src):
         thresh = cv2.adaptiveThreshold(src,255,cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY,3,0)
         _, contours, _ = cv2.findContours(thresh,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
         cv2.drawContours(im, contours, -1, (0,0,0), 1)
