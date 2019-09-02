@@ -3,6 +3,7 @@ import depth
 import time
 import numpy as np
 import sandboxify as sb
+import cv2
 
 def get_depth(threshold_diff, reset):
     zeros = np.zeros((640, 480))
@@ -22,7 +23,7 @@ def get_depth(threshold_diff, reset):
             print('reset depth img')
         
         prev = np.copy(curr)
-        colored = sb.sandboxify(cur)
+        colored = sb.sandboxify(curr)
         cv2.imshow('sandbox', colored)
         key = cv2.waitKey(1)
         if key == 27:
