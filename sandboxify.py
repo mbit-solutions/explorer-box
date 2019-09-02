@@ -19,5 +19,5 @@ def sandboxify( im ):
     return colored
 
 def interp( im ):
-    im = np.interp(im,(47,70),(0,255)).astype(np.uint8)
+    im = np.interp(im,(48,67),(0,255)).astype(np.uint8)
     return im
