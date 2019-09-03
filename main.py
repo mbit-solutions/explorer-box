@@ -2,7 +2,7 @@ import sys
 import sandbox as sb
 import config as cfg
 import renderer as rd
-import tkinter
+import Tkinter
 
 fake_mode = False
 
@@ -16,7 +16,7 @@ else:
     import kinect as ki
     nect = ki.Kinect()
 
-window = tkinter.Tk()
+window = Tkinter.Tk()
 window.attributes('-fullscreen', True)
 window.bind('<Escape>',lambda e: window.destroy())
 

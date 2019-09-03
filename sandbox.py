@@ -3,7 +3,7 @@ import cv2
 import time
 import PIL.Image
 import PIL.ImageTk
-import tkinter
+import Tkinter
 
 class Sandbox:
     def __init__(self, config, nect, renderer):        
@@ -21,7 +21,7 @@ class Sandbox:
     def execute(self, window):
         print('starting explorer box')
         print('creating canvas')
-        canvas = tkinter.Canvas(window, width=self.config.window_width, height=self.config.window_height)
+        canvas = Tkinter.Canvas(window, width=self.config.window_width, height=self.config.window_height)
         canvas.pack()
 
         print('getting depth images')
@@ -49,7 +49,7 @@ class Sandbox:
             previous_depth = np.copy(current_depth)
 
             photo = PIL.ImageTk.PhotoImage(image=PIL.Image.fromarray(self.renderer.execute(current_depth)))
-            canvas.create_image(0, 0, image=photo, anchor=tkinter.NW)
+            canvas.create_image(0, 0, image=photo, anchor=Tkinter.NW)
             window.update_idletasks()
             window.update()
             time.sleep(self.config.depth_frame_rate)
