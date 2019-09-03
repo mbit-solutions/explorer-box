@@ -6,10 +6,10 @@ class Renderer:
         self.config = config
 
     def execute(self, depth_image):
-        depth_image = self.interpolate(depth_image)
         depth_image = self.resize(depth_image)
+        depth_image = self.interpolate(depth_image)
         depth_image = self.invert(depth_image)
-        poster_image = self.posterize(depth_image, 10)
+        poster_image = self.posterize(depth_image, self.config.depth_posterize_qty)
         color_image = self.colorize(np.copy(poster_image)) 
         color_image = self.blur(color_image)
         self.contourize(color_image, poster_image)
@@ -25,7 +25,7 @@ class Renderer:
         return 255 - im
 
     def blur(self, im):
-        return cv2.GaussianBlur(im,(3,3),0)
+        return cv2.GaussianBlur(im,(5,5),0)
 
     def posterize(self, im, n):
         indices = np.arange(0,256)   # List of all colors 
@@ -71,4 +71,4 @@ class Renderer:
     def contourize(self, im, src):
         thresh = cv2.adaptiveThreshold(src,255,cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY,3,0)
         _, contours, _ = cv2.findContours(thresh,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
-        cv2.drawContours(im, contours, -1, (0,0,0), 1)
+        cv2.drawContours(im, contours, -1, (50,50,50), 2)
