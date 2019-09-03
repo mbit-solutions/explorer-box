@@ -1,4 +1,4 @@
-Explorer Box
+Explorer Box AR+
 ===========
 Augmented Reality Sandbox - simply mold the sand by hand and the landscape comes to life
 
