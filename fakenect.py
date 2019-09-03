@@ -1,5 +1,4 @@
 import numpy as np
-import cv2
 
 class Fakenect:
     def get_depth_image_mm(self):

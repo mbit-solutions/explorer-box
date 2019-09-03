@@ -3,13 +3,16 @@ Explorer Box
 Augmented Reality Sandbox - simply mold the sand by hand and the landscape comes to life
 
 # Hardware
-- 1x Raspberry Pi 4 (2GB RAM)
-- 1x Microsoft Kinect Sensor v1 (XBox 360)
-- 1x Beamer BenQ MX631ST (4:3)
+You need following hardware:
+- Raspberry Pi 4 - 2GB RAM
+- Microsoft Kinect Sensor v1 (XBox 360) + Power supply (USB adapter and charger cable)
+- Beamer BenQ MX631ST (Short-throw, ratio 4:3)
 - Assembled sandbox (e.g. wood)
 
+Instead of Raspberry Pi you can use any other computer e.g. Intel NUC running on Debian
+
 # Installation
-Install on Raspberry Pi latest version of Rasbian.
+Install on Raspberry Pi latest version of Rasbian (desktop version). [You can find rasbian images here](https://www.raspberrypi.org/downloads/raspbian/)
 
 ## Update sources
 ```
@@ -49,4 +52,22 @@ make
 sudo make install
 ```
 
+## Clone repo
+```
+git clone https://github.com/mbit-solutions/explorer-box
+```
+
 # Run
+
+## Kinect mode
+Kinect sensor must be connect to Raspberry Pi
+```
+sudo python main.py
+```
+
+## Fake mode
+No kinect sensor necessary - generates random depth image
+```
+sudo python main.py fakenect
+```
+

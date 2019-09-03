@@ -6,8 +6,7 @@ import PIL.ImageTk
 import tkinter
 
 class Sandbox:
-    def __init__(self, config, nect, renderer):
-        self.zeros = np.zeros((640, 480))
+    def __init__(self, config, nect, renderer):        
         self.config = config
         self.nect = nect
         self.renderer = renderer
@@ -26,9 +25,9 @@ class Sandbox:
         canvas.pack()
 
         print('getting depth images')
-        current_depth = self.nect.get_depth_image_mm()
-        previous_depth_reset = np.copy(current_depth)
-        previous_depth = np.copy(current_depth)
+        original_depth = self.nect.get_depth_image_mm()
+        previous_depth_reset = np.copy(original_depth)
+        previous_depth = np.copy(original_depth)
 
         while True:
             original_depth = self.nect.get_depth_image_mm()
