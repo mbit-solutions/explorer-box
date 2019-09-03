@@ -6,8 +6,8 @@ class Renderer:
         self.config = config
 
     def execute(self, depth_image):
-        depth_image = self.resize(depth_image)
         depth_image = self.interpolate(depth_image)
+        depth_image = self.resize(depth_image)        
         depth_image = self.invert(depth_image)
         poster_image = self.posterize(depth_image, self.config.depth_posterize_qty)
         color_image = self.colorize(np.copy(poster_image)) 
@@ -70,5 +70,5 @@ class Renderer:
 
     def contourize(self, im, src):
         thresh = cv2.adaptiveThreshold(src,255,cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY,3,0)
-        _, contours, _ = cv2.findContours(thresh,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
+        contours, _ = cv2.findContours(thresh,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
         cv2.drawContours(im, contours, -1, (50,50,50), 2)
