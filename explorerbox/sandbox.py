@@ -32,9 +32,7 @@ class Sandbox:
 
     def execute(self, window):
         print('starting explorer box')        
-        print('setting size')
-        self.config.window_width = window.winfo_screenwidth()
-        self.config.window_height = window.winfo_screenheight()
+        print('setting size')       
         print(self.config.window_width, self.config.window_height)
 
         print('creating canvas')
@@ -69,9 +67,6 @@ class Sandbox:
             time.sleep(self.config.depth_frame_rate)
 
     def calibrate_beamer(self, window):     
-        self.config.window_width = window.winfo_screenwidth()
-        self.config.window_height = window.winfo_screenheight()   
-
         height = self.config.window_height
         width = self.config.window_width
 

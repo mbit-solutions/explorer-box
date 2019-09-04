@@ -17,8 +17,7 @@ def main():
         fake_mode = True
 
     if len(sys.argv) == 2 and sys.argv[1] == 'kinect_calibrate':
-        calibrate_kinect_mode = True    
-        fake_mode = True
+        calibrate_kinect_mode = True            
 
     if fake_mode == True:
         from kinect import fakenect as fa
