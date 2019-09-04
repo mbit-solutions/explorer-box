@@ -71,3 +71,14 @@ No kinect sensor necessary - generates random depth image
 sudo python main.py fakenect
 ```
 
+## Calibrate kinect
+Kinect sensor must be connect to Raspberry Pi
+```
+sudo python main.py kinect_calibrate
+```
+
+## Calibrate beamer
+```
+sudo python main.py beamer_calibrate
+```
+

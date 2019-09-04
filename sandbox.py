@@ -68,8 +68,24 @@ class Sandbox:
             self.update_canvas(canvas, window, self.renderer.execute(current_depth))
             time.sleep(self.config.depth_frame_rate)
 
-    def calibrate_beamer(self, window):        
-        im = np.zeros((self.config.window_height, self.config.window_width))        
+    def calibrate_beamer(self, window):     
+        self.config.window_width = window.winfo_screenwidth()
+        self.config.window_height = window.winfo_screenheight()   
+
+        height = self.config.window_height
+        width = self.config.window_width
+
+        im = 255 - np.zeros((height, width)).astype(np.uint8)      
+        block_size = 30
+        height_center = height / 2 - block_size / 2
+        width_center = width / 2 - block_size / 2
+
+        im[height_center:height_center+block_size, width_center:width_center+block_size] = [0]
+        im[0:block_size, 0:block_size] = [0]
+        im[0:block_size, width-block_size:width] = [0]
+        im[height-block_size:height, 0:block_size] = [0]
+        im[height-block_size:height, width-block_size:width] = [0]
+
         canvas = self.create_canvas(window)
         photo = PIL.ImageTk.PhotoImage(image=PIL.Image.fromarray(im))        
         canvas.create_image(0, 0, image=photo, anchor=Tkinter.NW)
