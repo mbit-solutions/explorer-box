@@ -1,7 +1,7 @@
 class Config:
 	def __init__(self):
-		self.window_width = 1920
-		self.window_height = 1080
+		self.window_width = 640
+		self.window_height = 480
 		self.depth_mm_min = 1010
 		self.depth_mm_max = 1330
 		self.depth_mm_threshold_diff = 40

@@ -5,7 +5,6 @@ import PIL.Image
 import PIL.ImageTk
 import Tkinter
 
-
 class Sandbox:
     def __init__(self, config, nect, renderer):
         self.config = config
@@ -32,14 +31,19 @@ class Sandbox:
         window.update()
 
     def execute(self, window):
-        print('starting explorer box')
+        print('starting explorer box')        
+        print('setting size')
+        self.config.window_width = window.winfo_screenwidth()
+        self.config.window_height = window.winfo_screenheight()
+        print(self.config.window_width, self.config.window_height)
+
         print('creating canvas')
         canvas = self.create_canvas(window)
 
         print('getting depth images')
         original_depth = self.nect.get_depth_image_mm()
         previous_depth_reset = np.copy(original_depth)
-        previous_depth = np.copy(original_depth)
+        previous_depth = np.copy(original_depth)        
 
         while True:
             original_depth = self.nect.get_depth_image_mm()
@@ -64,12 +68,16 @@ class Sandbox:
             self.update_canvas(canvas, window, self.renderer.execute(current_depth))
             time.sleep(self.config.depth_frame_rate)
 
-    def calibrate(self, window):
-        
+    def calibrate_beamer(self, window):        
         im = np.zeros((self.config.window_height, self.config.window_width))        
-        #im = np.pad(im, pad_width=5, mode='constant', constant_values=0)
-
         canvas = self.create_canvas(window)
         photo = PIL.ImageTk.PhotoImage(image=PIL.Image.fromarray(im))        
         canvas.create_image(0, 0, image=photo, anchor=Tkinter.NW)
         window.mainloop()
+
+    def calibrate_kinect(self, window):
+        canvas = self.create_canvas(window)
+        while True:
+            im = self.nect.get_video()            
+            self.update_canvas(canvas, window, im)
+            time.sleep(self.config.depth_frame_rate)
