@@ -76,7 +76,7 @@ class Sandbox:
         width = self.config.window_width
 
         im = 255 - np.zeros((height, width)).astype(np.uint8)      
-        block_size = 30
+        block_size = 40
         height_center = height / 2 - block_size / 2
         width_center = width / 2 - block_size / 2
 

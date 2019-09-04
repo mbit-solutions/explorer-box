@@ -1,8 +1,8 @@
 import sys
-import sandbox as sb
-import config as cfg
-import renderer as rd
 import Tkinter
+from explorerbox import sandbox as sb
+from explorerbox import config as cfg
+from explorerbox import renderer as rd
 
 fake_mode = False
 calibrate_beamer_mode = False
@@ -17,12 +17,13 @@ if len(sys.argv) == 2 and sys.argv[1] == 'beamer_calibrate':
 
 if len(sys.argv) == 2 and sys.argv[1] == 'kinect_calibrate':
     calibrate_kinect_mode = True    
+    fake_mode = True
 
 if fake_mode == True:
-    import fakenect as fa
+    from kinect import fakenect as fa
     nect = fa.Fakenect()
 else:
-    import kinect as ki
+    from kinect import kinect as ki
     nect = ki.Kinect()
 
 window = Tkinter.Tk()
