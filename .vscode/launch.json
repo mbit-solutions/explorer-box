@@ -10,7 +10,7 @@
             "request": "launch",
             "program": "${workspaceFolder}/main.py",
             "console": "integratedTerminal",
-            "args": ["kinect_calibrate"]
+            "args": ["fakenect"]
         }
     ]
 }
