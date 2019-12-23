@@ -33,6 +33,8 @@ $(function () {
                 $("#borderBottom").val(data.border_bottom);
                 $("#borderLeft").val(data.border_left);
                 $("#colorMap").val(data.color_map);
+                $("#enablePosterize").prop("checked", data.enable_posterize);
+                $("#enableContourize").prop("checked", data.enable_contourize);
 
                 if(configuration.picture_frequency > 0) {
                     setInterval(getImage, 1000);
@@ -81,6 +83,8 @@ $(function () {
         configuration.border_bottom = parseInt($("#borderBottom").val()) | 0;
         configuration.border_left = parseInt($("#borderLeft").val()) | 0;
         configuration.color_map = $("#colorMap").val();
+        configuration.enable_posterize = $("#enablePosterize").is(":checked");
+        configuration.enable_contourize = $("#enableContourize").is(":checked");
     }
 
     function normalizeConfiguration() {
@@ -153,6 +157,8 @@ $(function () {
     $("#borderBottom").on("input", scheduleSaveConfiguration);
     $("#borderLeft").on("input", scheduleSaveConfiguration);
     $("#colorMap").on("change", scheduleSaveConfiguration);
+    $("#enablePosterize").on("change", scheduleSaveConfiguration);
+    $("#enableContourize").on("change", scheduleSaveConfiguration);
 
     $(".btn-preview-image").on("click", togglePreview);
 });
