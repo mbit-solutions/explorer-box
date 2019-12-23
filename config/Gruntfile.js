@@ -10,9 +10,6 @@ module.exports = function (grunt) {
                     "assets/js/popper/popper.min.js",
                     "assets/js/bootstrap/bootstrap.js",
                     "assets/js/toastr/toastr.min.js",
-                    // "assets/js/bootstrap-slider/modernizr.js",
-                    // "assets/js/bootstrap-slider/highlight.min.js",
-                    // "assets/js/bootstrap-slider/bootstrap-slider.js",
                     "assets/js/index.js"
                 ],
                 "dest": "dist/js/app.js"

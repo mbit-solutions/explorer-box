@@ -41,15 +41,30 @@ $(function () {
     function saveConfiguration() {
 
         //validate and normalize
+        buildConfiguration();
+        normalizeConfiguration();
+
+        var data = JSON.stringify(configuration);
+
+        //call nodeJs Server, that writes into file
+        $.ajax({
+            type: "POST",
+            url: nodeServerUrl,
+            data: { "data": data },
+            fail: function (error) {
+                console.error(error);
+            },
+            dataType: "text/json"
+          });
+    }
+
+    function buildConfiguration() {
         var windowWidthAndHeight = $("#windowWidthAndHeight").val().split("x");
         configuration.window_width = parseInt(windowWidthAndHeight[0]) | 0;
         configuration.window_height = parseInt(windowWidthAndHeight[1]) | 0;
         configuration.depth_mm_min = parseInt($("#depthMin").val()) | 0;
         configuration.depth_mm_max = parseInt($("#depthMax").val()) | 0;
         configuration.depth_frame_rate = parseFloat($("#framerate").val());
-        if (configuration.depth_frame_rate <= 0) { //validate and set to standard value 
-            configuration.depth_frame_rate = 0.3;
-        }
         configuration.depth_mm_threshold_diff = parseInt($("#depthThreshold").val()) | 0;
         configuration.depth_px_qty_ignore = parseInt($("#depthPxQtyIgnore").val()) | 0;
         configuration.depth_posterize_qty = parseInt($("#depthPosterizeQuantity").val()) | 0;
@@ -58,14 +73,40 @@ $(function () {
         configuration.border_bottom = parseInt($("#borderBottom").val()) | 0;
         configuration.border_left = parseInt($("#borderLeft").val()) | 0;
         configuration.color_map = $("#colorMap").val();
+    }
 
-        var data = JSON.stringify(configuration);
+    function normalizeConfiguration() {
+        //depth_mm_min
+        if (configuration.depth_mm_min < 0) {
+            configuration.depth_mm_min = 0;
+        }
+        if (configuration.depth_mm_min > 3000) {
+            configuration.depth_mm_min = 3000;
+        }
+        
+        //depth_mm_max
+        if (configuration.depth_mm_max < 0) {
+            configuration.depth_mm_max = 0;
+        }
+        if (configuration.depth_mm_max > 3000) {
+            configuration.depth_mm_max = 3000;
+        }
 
-        //call nodeJs Server, that writes into file
-        $.post(nodeServerUrl, { "data": data }, function(erro, resultr) {
-            console.log("error", error);
-            toastr.info("test");
-        });
+        //depth_frame_rate
+        if (configuration.depth_frame_rate < 0.01) {
+            configuration.depth_frame_rate = 0.01;
+        }
+        if (configuration.depth_frame_rate > 3) {
+            configuration.depth_frame_rate = 3;
+        }
+
+        //depth_posterize_qty
+        if (configuration.depth_posterize_qty < 1) {
+            configuration.depth_posterize_qty = 1;
+        }
+        if (configuration.depth_posterize_qty > 20) {
+            configuration.depth_posterize_qty = 20;
+        }
     }
 
     loadConfiguration();

@@ -36,10 +36,16 @@ http.createServer(function (req, res) {
                 console.log("Data written successfully!", post.data);
             });
 
+            res.writeHead(200, { 'Content-Type': 'text/plain' });
+            res.end();
+
         });
     }
+    else {
+        res.writeHead(200, { 'Content-Type': 'text/plain' });
+        res.end();
+    }
 
-    res.writeHead(200, { 'Content-Type': 'text/plain' });
-    res.end();
+    
 
 }).listen(1337);
