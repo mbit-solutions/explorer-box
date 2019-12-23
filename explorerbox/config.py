@@ -18,6 +18,8 @@ class Config:
 	border_bottom:int
 	border_left:int
 	color_map:str
+	enable_posterize:bool
+	enable_contourize:bool
 
 	def __init__(self):
 		self.reset=False
@@ -36,6 +38,8 @@ class Config:
 		self.border_bottom=0
 		self.border_left=0
 		self.color_map='default'
+		self.enable_posterize=True
+		self.enable_contourize=True
 
 	def loadFromFile(self):
 		print('load config file', flush=True)
@@ -57,3 +61,5 @@ class Config:
 			self.border_bottom=data['border_bottom']
 			self.border_left=data['border_left']
 			self.color_map=data['color_map']
+			self.enable_posterize=data['enable_posterize']
+			self.enable_contourize=data['enable_contourize']
