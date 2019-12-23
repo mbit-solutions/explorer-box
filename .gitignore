@@ -109,3 +109,4 @@ venv.bak/
 
 .vscode/settings.json
 *.jpg
+config/config.json

@@ -14,7 +14,6 @@ class ConfigChangeHandler(FileSystemEventHandler):
         if event.src_path == 'config/config.json':
             config.update()
 
-
 def main():
     fake_mode = False
     calibrate_beamer_mode = False

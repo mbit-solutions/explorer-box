@@ -55,9 +55,13 @@ class Sandbox:
             coords_qty = len(np.where(original_depth < [
                              self.config.depth_mm_min])[0])
 
-            if coords_qty < self.config.depth_px_qty_ignore:
+            if self.config.reset or coords_qty < self.config.depth_px_qty_ignore:
+                print('reset')
+                if self.config.reset:
+                    print('reset config')
                 current_depth = original_depth
                 previous_depth_reset = np.copy(current_depth)
+                self.config.reset=False
             else:
                 print('take previous depth image - ignore pixel quantity', coords_qty)
                 c = np.where(current_depth < [self.config.depth_mm_min])
