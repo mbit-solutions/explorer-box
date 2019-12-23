@@ -4,6 +4,34 @@ import numpy as np
 class Renderer:
     def __init__(self, config):
         self.config = config
+        
+        # taken from pyqtgraph GradientEditorItem
+        self.cmaps={
+            "default":(
+                (0, (250, 5, 100)),
+                (0.05, (255, 0, 0)),
+                (0.4, (0, 255, 0)),
+                (0.5, (0, 200, 255)),
+                (0.99, (0, 0, 255)),
+                (1.0, (255, 255, 255))
+            ),
+            "inverted":(
+                (0, (255, 255, 255)),
+                (0.05, (0, 0, 255)),
+                (0.4, (0, 200, 255)),
+                (0.5, (0, 255, 0)),
+                (0.99, (255, 0, 0)),
+                (1.0, (250, 5, 100))
+            ),
+            "darkmode":(
+                (0, (130, 130, 130)),
+                (0.05, (0, 0, 150)),
+                (0.4, (0, 120, 150)),
+                (0.5, (0, 150, 0)),
+                (0.99, (60, 0, 0)),
+                (1.0, (60, 5, 100))
+            )
+        }
 
     def execute(self, depth_image):
         depth_image = self.interpolate(depth_image)
@@ -13,7 +41,15 @@ class Renderer:
         color_image = self.colorize(np.copy(poster_image)) 
         color_image = self.blur(color_image)
         self.contourize(color_image, poster_image)
+        self.borderize(color_image)
         return color_image
+
+    def borderize(self, im):
+        height, width, channels = im.shape
+        for x in range(0,width):
+            for y in range(0,height):
+                if x < self.config.border_left or y < self.config.border_top or x > (width - self.config.border_right) or y > (height - self.config.border_bottom):
+                    im[y,x] = [0,0,0]
 
     def interpolate(self, im):
         return np.interp(im,(self.config.depth_mm_min,self.config.depth_mm_max),(0,255)).astype(np.uint8) 
@@ -40,15 +76,12 @@ class Renderer:
     def colorize(self, im):
         mx = 256  # if gray.dtype==np.uint8 else 65535
         lut = np.empty(shape=(256, 3))
-        cmap = (
-            # taken from pyqtgraph GradientEditorItem
-            (0, (250, 5, 100)),
-            (0.05, (255, 0, 0)),
-            (0.4, (0, 255, 0)),
-            (0.5, (0, 200, 255)),
-            (0.99, (0, 0, 255)),
-            (1.0, (255, 255, 255))
-        )
+
+        if self.config.color_map in self.cmaps:
+            cmap = self.cmaps[self.config.color_map]
+        else:
+            cmap = self.cmaps["default"]
+        
         # build lookup table:
         lastval, lastcol = cmap[0]
         for step, col in cmap[1:]:

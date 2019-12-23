@@ -8,11 +8,13 @@ from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 
 config = cfg.Config()
+config.loadFromFile()
 
 class ConfigChangeHandler(FileSystemEventHandler):
     def on_modified(self, event):
         if event.src_path == 'config/config.json':
-            config.update()
+            print('detected change in configfile')
+            config.loadFromFile()
 
 def main():
     fake_mode = False
@@ -47,8 +49,6 @@ def main():
         sandbox.calibrate_kinect(window)
     else:
         sandbox.execute(window)
-    
-    config.update()
 
 if __name__ == '__main__':
     event_handler = ConfigChangeHandler()
