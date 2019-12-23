@@ -8,3 +8,8 @@ class Config:
 		self.depth_px_qty_ignore = 11000	
 		self.depth_frame_rate = 0.25
 		self.depth_posterize_qty = 15	
+		self.picture_path='config/sandbox.jpg'
+		self.picture_frequency=0
+
+	def update(self):
+		self.depth_frame_rate = 10

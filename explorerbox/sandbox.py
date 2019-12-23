@@ -24,8 +24,8 @@ class Sandbox:
         canvas.pack()
         return canvas
     
-    def update_canvas(self, canvas, window, im):
-        photo = PIL.ImageTk.PhotoImage(image=PIL.Image.fromarray(im))
+    def update_canvas(self, canvas, window, image):
+        photo = PIL.ImageTk.PhotoImage(image=image)
         canvas.create_image(0, 0, image=photo, anchor=tkinter.NW)
         window.update_idletasks()
         window.update()
@@ -43,6 +43,7 @@ class Sandbox:
         previous_depth_reset = np.copy(original_depth)
         previous_depth = np.copy(original_depth)        
 
+        image_save_counter=0
         while True:
             original_depth = self.nect.get_depth_image_mm()
             current_depth = np.copy(original_depth)
@@ -63,8 +64,21 @@ class Sandbox:
                 current_depth[c] = previous_depth_reset[c]
 
             previous_depth = np.copy(current_depth)
-            self.update_canvas(canvas, window, self.renderer.execute(current_depth))
+
+            current_image=PIL.Image.fromarray(self.renderer.execute(current_depth))
+
+            if self.config.picture_frequency >= 0 and self.config.picture_path:
+                if image_save_counter == self.config.picture_frequency:
+                    self.exportImage(current_image)
+                    image_save_counter=0
+                else:
+                    image_save_counter+=1
+            
+            self.update_canvas(canvas, window, current_image)
             time.sleep(self.config.depth_frame_rate)
+
+    def exportImage(self, image):
+        image.save(self.config.picture_path)
 
     def calibrate_beamer(self, window):     
         height = self.config.window_height
