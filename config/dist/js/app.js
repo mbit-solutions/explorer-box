@@ -15131,6 +15131,7 @@ return jQuery;
 //# sourceMappingURL=toastr.js.map
 ;$(function () {
     var configFileName = "config.json";
+    var logFileName = "logs.txt";
     var configuration;
     var nodeServerUrl = "http://10.42.0.1:1337/";
 
@@ -15163,6 +15164,13 @@ return jQuery;
                 $("#borderBottom").val(data.border_bottom);
                 $("#borderLeft").val(data.border_left);
                 $("#colorMap").val(data.color_map);
+
+                if(configuration.picture_frequency > 0) {
+                    setInterval(getImage, 1000);
+                }
+                else {
+                    $(".btn-preview-image").hide();
+                }
             }
         }, function (error) {
             console.error(error);
@@ -15240,7 +15248,28 @@ return jQuery;
         }
     }
 
+    function togglePreview() {
+        $("#preview").toggle();
+    }
+
+    function getImage() {
+        var image = configuration.picture_path.replace("config/", "") + "?rand=" + performance.now();
+        $("#preview-img").attr("src", image);
+    }
+
     loadConfiguration();
+
+    function loadLogs()
+    {
+        $.get(logFileName+"?nocache="+performance.now(), null, function(data) {
+            if(data)
+            {
+                $("#logWindow").val(data);
+                //$("#logWindow").scrollTop($("#logWindow")[0].scrollHeight);
+            }
+        });
+    }
+    setInterval(loadLogs, 2500);
 
     //listen to events
     $("#windowWidthAndHeight").on("change", scheduleSaveConfiguration);
@@ -15255,4 +15284,6 @@ return jQuery;
     $("#borderBottom").on("input", scheduleSaveConfiguration);
     $("#borderLeft").on("input", scheduleSaveConfiguration);
     $("#colorMap").on("change", scheduleSaveConfiguration);
+
+    $(".btn-preview-image").on("click", togglePreview);
 });

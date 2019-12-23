@@ -24,12 +24,21 @@ class Renderer:
                 (1.0, (100, 5, 200))
             ),
             "darkmode":(
-                (0, (130, 130, 130)),
-                (0.05, (0, 0, 150)),
-                (0.4, (0, 120, 150)),
-                (0.5, (0, 150, 0)),
-                (0.99, (60, 0, 0)),
-                (1.0, (60, 5, 100))
+                (0, (100, 2, 180)),
+                (0.05, (0, 0, 200)),
+                (0.5, (0, 180, 0)),
+                (0.6, (200, 180, 0)),
+                (0.99, (200, 0, 0)),
+                (1.0, (200, 200, 200))
+            ),
+            "rainbow":(
+                (0, (255, 0, 0)),
+                (0.16, (255, 127, 0)),
+                (0.33, (255, 255, 0)),
+                (0.5, (0, 255, 0)),
+                (0.66, (0, 0, 255)),
+                (0.83, (46, 43, 95)),
+                (1.0, (139, 0, 255))
             )
         }
 
@@ -104,4 +113,4 @@ class Renderer:
     def contourize(self, im, src):
         thresh = cv2.adaptiveThreshold(src,255,cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY,3,0)
         contours, _ = cv2.findContours(thresh,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
-        cv2.drawContours(im, contours, -1, (50,50,50), 2)
+        cv2.drawContours(im, contours, -1, (50,50,50), 1)

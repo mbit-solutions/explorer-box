@@ -33,6 +33,13 @@ $(function () {
                 $("#borderBottom").val(data.border_bottom);
                 $("#borderLeft").val(data.border_left);
                 $("#colorMap").val(data.color_map);
+
+                if(configuration.picture_frequency > 0) {
+                    setInterval(getImage, 1000);
+                }
+                else {
+                    $(".btn-preview-image").hide();
+                }
             }
         }, function (error) {
             console.error(error);
@@ -110,6 +117,15 @@ $(function () {
         }
     }
 
+    function togglePreview() {
+        $("#preview").toggle();
+    }
+
+    function getImage() {
+        var image = configuration.picture_path.replace("config/", "") + "?rand=" + performance.now();
+        $("#preview-img").attr("src", image);
+    }
+
     loadConfiguration();
 
     function loadLogs()
@@ -138,4 +154,5 @@ $(function () {
     $("#borderLeft").on("input", scheduleSaveConfiguration);
     $("#colorMap").on("change", scheduleSaveConfiguration);
 
+    $(".btn-preview-image").on("click", togglePreview);
 });

@@ -12,10 +12,6 @@
 
 <body>
 
-    <header>
-        
-    </header>
-
     <div class="container">
         <div class="row">
             <div class="col-12 pt-3 pb-3">
@@ -35,18 +31,18 @@
                 </div>
 
             </div>
-            <div class="col-6">
+            <div class="col-12 col-md-6">
                 <div class="form-group">
                     <label for="depthMin">Depth Min (in millimeters)</label>
                     <span class="small">0mm - 3000mm</span>
-                    <input type="number" step="5" min="0" max="3000" id="depthMin" class="form-control" >
+                    <input type="number" step="1" min="0" max="3000" id="depthMin" class="form-control" >
                 </div>
             </div>
-            <div class="col-6">
+            <div class="col-12 col-md-6">
                 <div class="form-group">
                     <label for="depthMax">Depth Max (in millimeters)</label>
                     <span class="small">0mm - 3000mm</span>
-                    <input type="number" step="5" min="0" max="3000" id="depthMax" class="form-control" >
+                    <input type="number" step="1" min="0" max="3000" id="depthMax" class="form-control" >
                 </div>
             </div>
             <div class="col-12">
@@ -80,18 +76,18 @@
                     <tr>
                         <td></td>
                         <td>
-                            <input type="number" step="1" min="1" max="20" id="borderTop" class="form-control"></td>
+                            <input type="number" step="1" min="0" max="100" id="borderTop" class="form-control"></td>
                         <td></td>
                     </tr>
                     <tr>
-                        <td><input type="number" step="1" min="1" max="20" id="borderLeft" class="form-control"></td>
+                        <td><input type="number" step="1" min="0" max="100" id="borderLeft" class="form-control"></td>
                         <td><div class="b0rder"></div></td>
-                        <td><input type="number" step="1" min="1" max="20" id="borderRight" class="form-control"></td>
+                        <td><input type="number" step="1" min="0" max="100" id="borderRight" class="form-control"></td>
                     </tr>
                     <tr>
                         <td></td>
                         <td>
-                            <input type="number" step="1" min="1" max="20" id="borderBottom" class="form-control"></td>
+                            <input type="number" step="1" min="0" max="100" id="borderBottom" class="form-control"></td>
                         <td></td>
                     </tr>
                 </table>
@@ -104,7 +100,7 @@
                     <select class="form-control" id="colorMap">
                         <option value="default">Default</option>
                         <option value="inverted">Inverted</option>
-                        <option value="rainbow">Rainbow road</option>
+                        <option value="rainbow">Rainbow</option>
                     </select>
                 </div>
 
@@ -120,12 +116,17 @@
         </div>
     </div>
 
-    <!-- <footer>
-        <div>
-            Status will be shown here
+    <footer>
+        <div class="disclaimer">
+            poweredy by MBIT
         </div>
-        <div>image</div>
-    </footer> -->
+        <div class="preview-image">
+            <button type="button" class="btn btn-outline-secondary btn-preview-image">Show Image</button>
+            <div id="preview">
+                <img id="preview-img" />
+            </div>
+        </div>
+    </footer>
 
 </body>
 

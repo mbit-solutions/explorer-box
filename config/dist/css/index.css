@@ -9875,11 +9875,7 @@ h3 {
     border-color: #dee2e6;
   }
 }
-/*
- * Note that this is toastr v2.1.3, the "latest" version in url has no more maintenance,
- * please go to https://cdnjs.com/libraries/toastr.js and pick a certain version you want to use,
- * make sure you copy the url from the website since the url may change between versions.
- * */
+/* * Note that this is toastr v2.1.3, the "latest" version in url has no more maintenance, * please go to https://cdnjs.com/libraries/toastr.js and pick a certain version you want to use, * make sure you copy the url from the website since the url may change between versions. * */
 .toast-title {
   font-weight: 700;
 }
@@ -10139,6 +10135,10 @@ button.toast-close-button {
     padding: 15px 50px 15px 15px;
   }
 }
+body {
+  padding-bottom: 60px;
+}
+
 #border-setting-table td {
   text-align: center;
 }
@@ -10148,9 +10148,46 @@ button.toast-close-button {
 }
 #border-setting-table td .b0rder {
   display: block;
-  width: 200px;
+  width: 100px;
   height: 100px;
   border: 2px solid gray;
+}
+
+footer {
+  position: fixed;
+  height: 50px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to right, #FFD400 0%, #F39100 100%);
+  display: flex;
+  flex-direction: row;
+  border-top: #aeaeae;
+  color: white;
+  padding: 10px;
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+  align-items: center;
+}
+footer > div {
+  flex: 1;
+}
+footer > div.preview-image {
+  text-align: right;
+}
+footer > div.preview-image .btn-preview-image {
+  border-color: white;
+  color: white;
+}
+footer > div #preview {
+  display: none;
+  position: fixed;
+  bottom: 60px;
+  right: 10px;
+}
+footer > div #preview img {
+  width: 355px;
+  height: 266px;
+  opacity: 0.75;
 }
 
 /*# sourceMappingURL=index.css.map */
