@@ -42,9 +42,9 @@ Finally download and build libfreenect. You can check for latest version at the 
 
 ```
 cd ~/src
-wget https://github.com/OpenKinect/libfreenect/archive/v0.5.3.tar.gz
-tar -xvzf v0.5.3.tar.gz
-cd ~/src/libfreenect-0.5.3
+wget https://github.com/OpenKinect/libfreenect/archive/v0.5.7.tar.gz
+tar -xvzf v0.5.7.tar.gz
+cd ~/src/libfreenect-0.5.7
 mkdir build
 cd build
 cmake -L ..
