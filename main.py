@@ -1,5 +1,5 @@
 import sys
-import Tkinter
+import tkinter
 from explorerbox import sandbox as sb
 from explorerbox import config as cfg
 from explorerbox import renderer as rd
@@ -26,7 +26,7 @@ def main():
         from kinect import kinect as ki
         nect = ki.Kinect()
         
-    window = Tkinter.Tk()
+    window = tkinter.Tk()
     window.attributes('-fullscreen', True)
     window.bind('<Escape>',lambda e: window.destroy())
 

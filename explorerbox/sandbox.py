@@ -3,7 +3,7 @@ import cv2
 import time
 import PIL.Image
 import PIL.ImageTk
-import Tkinter
+import tkinter
 
 class Sandbox:
     def __init__(self, config, nect, renderer):
@@ -19,14 +19,14 @@ class Sandbox:
         return np.where(diff > [threshold])
 
     def create_canvas(self, window):
-        canvas = Tkinter.Canvas(
+        canvas = tkinter.Canvas(
             window, width=self.config.window_width, height=self.config.window_height)
         canvas.pack()
         return canvas
     
     def update_canvas(self, canvas, window, im):
         photo = PIL.ImageTk.PhotoImage(image=PIL.Image.fromarray(im))
-        canvas.create_image(0, 0, image=photo, anchor=Tkinter.NW)
+        canvas.create_image(0, 0, image=photo, anchor=tkinter.NW)
         window.update_idletasks()
         window.update()
 
@@ -83,7 +83,7 @@ class Sandbox:
 
         canvas = self.create_canvas(window)
         photo = PIL.ImageTk.PhotoImage(image=PIL.Image.fromarray(im))        
-        canvas.create_image(0, 0, image=photo, anchor=Tkinter.NW)
+        canvas.create_image(0, 0, image=photo, anchor=tkinter.NW)
         window.mainloop()
 
     def calibrate_kinect(self, window):
