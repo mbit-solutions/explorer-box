@@ -46,9 +46,10 @@ class Renderer:
         depth_image = self.interpolate(depth_image)
         depth_image = self.resize(depth_image)        
         depth_image = self.invert(depth_image)
+        tmp_posterize= self.posterize(depth_image, self.config.depth_posterize_qty)
 
         if self.config.enable_posterize:
-            poster_image = self.posterize(depth_image, self.config.depth_posterize_qty)
+            poster_image = tmp_posterize
         else:
             poster_image = depth_image
 
@@ -56,7 +57,7 @@ class Renderer:
         color_image = self.blur(color_image)
 
         if self.config.enable_contourize:
-            self.contourize(color_image, poster_image)
+            self.contourize(color_image, tmp_posterize)
         self.borderize(color_image)
         return color_image
 
