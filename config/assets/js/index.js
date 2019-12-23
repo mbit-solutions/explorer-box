@@ -1,5 +1,6 @@
 $(function () {
     var configFileName = "config.json";
+    var logFileName = "logs.txt";
     var configuration;
     var nodeServerUrl = "http://10.42.0.1:1337/";
 
@@ -111,6 +112,18 @@ $(function () {
 
     loadConfiguration();
 
+    function loadLogs()
+    {
+        $.get(logFileName+"?nocache="+performance.now(), null, function(data) {
+            if(data)
+            {
+                $("#logWindow").val(data);
+                //$("#logWindow").scrollTop($("#logWindow")[0].scrollHeight);
+            }
+        });
+    }
+    setInterval(loadLogs, 2500);
+
     //listen to events
     $("#windowWidthAndHeight").on("change", scheduleSaveConfiguration);
     $("#depthMin").on("input", scheduleSaveConfiguration);
@@ -124,4 +137,5 @@ $(function () {
     $("#borderBottom").on("input", scheduleSaveConfiguration);
     $("#borderLeft").on("input", scheduleSaveConfiguration);
     $("#colorMap").on("change", scheduleSaveConfiguration);
+
 });
