@@ -1,0 +1,22 @@
+{
+    "window_width": 1024,
+    "window_height": 768,
+
+    "depth_mm_min": 1300,
+    "depth_mm_max": 1500,
+
+    "depth_frame_rate": 0.25,
+
+    "depth_mm_threshold_diff": 150,
+
+    "depth_px_qty_ignore": 12000,
+
+    "depth_posterize_qty": 18,
+
+    "border_top": 0,
+    "border_right": 0,
+    "border_bottom": 0,
+    "border_left": 0,
+
+    "color_map": "dust3"
+}
