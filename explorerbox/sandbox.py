@@ -71,6 +71,8 @@ class Sandbox:
 
             current_image=PIL.Image.fromarray(self.renderer.execute(current_depth))
 
+            
+
             if self.config.picture_frequency >= 0 and self.config.picture_path:
                 if image_save_counter == self.config.picture_frequency:
                     self.exportImage(current_image)
