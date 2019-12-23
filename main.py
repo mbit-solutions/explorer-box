@@ -1,8 +1,18 @@
 import sys
+import time
 import tkinter
 from explorerbox import sandbox as sb
 from explorerbox import config as cfg
 from explorerbox import renderer as rd
+from watchdog.observers import Observer
+from watchdog.events import FileSystemEventHandler
+
+config = cfg.Config()
+
+class ConfigChangeHandler(FileSystemEventHandler):
+    def on_modified(self, event):
+        if event.src_path == 'config/config.json':
+            config.update()
 
 def main():
     fake_mode = False
@@ -29,8 +39,6 @@ def main():
     window = tkinter.Tk()
     window.attributes('-fullscreen', True)
     window.bind('<Escape>',lambda e: window.destroy())
-
-    config = cfg.Config()
     sandbox = sb.Sandbox(config, nect, rd.Renderer(config))
 
     if calibrate_beamer_mode == True:
@@ -39,6 +47,12 @@ def main():
         sandbox.calibrate_kinect(window)
     else:
         sandbox.execute(window)
+    
+    config.update()
 
 if __name__ == '__main__':
+    event_handler = ConfigChangeHandler()
+    observer=Observer()
+    observer.schedule(event_handler,path='config/',recursive=False)
+    observer.start()
     main()

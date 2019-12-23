@@ -1,5 +1,9 @@
+import json
+from collections import namedtuple
+
 class Config:
 	def __init__(self):
+		self.reset=False
 		self.window_width = 640
 		self.window_height = 480
 		self.depth_mm_min = 1010
@@ -8,3 +12,11 @@ class Config:
 		self.depth_px_qty_ignore = 11000	
 		self.depth_frame_rate = 0.25
 		self.depth_posterize_qty = 15	
+		self.picture_path='config/sandbox.jpg'
+		self.picture_frequency=0
+
+	def update(self):
+		# with open("config/config.json", "r") as cfg_file:
+		# 	json.load(d)
+		self.depth_frame_rate = 10
+		self.reset=True
