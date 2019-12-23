@@ -15163,6 +15163,13 @@ return jQuery;
                 $("#borderBottom").val(data.border_bottom);
                 $("#borderLeft").val(data.border_left);
                 $("#colorMap").val(data.color_map);
+
+                if(configuration.picture_frequency > 0) {
+                    setInterval(getImage, 1000);
+                }
+                else {
+                    $(".btn-preview-image").hide();
+                }
             }
         }, function (error) {
             console.error(error);
@@ -15240,6 +15247,16 @@ return jQuery;
         }
     }
 
+    function togglePreview() {
+        $("#preview").toggle();
+    }
+
+    function getImage() {
+        var image = configuration.picture_path.replace("config/", "") + "?rand=" + performance.now();
+        console.log("getImage", image);
+        $("#preview-img").attr("src", image);
+    }
+
     loadConfiguration();
 
     //listen to events
@@ -15255,4 +15272,6 @@ return jQuery;
     $("#borderBottom").on("input", scheduleSaveConfiguration);
     $("#borderLeft").on("input", scheduleSaveConfiguration);
     $("#colorMap").on("change", scheduleSaveConfiguration);
+
+    $(".btn-preview-image").on("click", togglePreview);
 });
