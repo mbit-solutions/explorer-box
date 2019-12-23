@@ -12,41 +12,112 @@
 
 <body>
 
+    <header>
+
+    </header>
+
     <div class="container">
         <div class="row">
-            <div class="col-12">
+            <div class="col-12 pt-3 pb-3">
                 <h1>Explorerbox - Configurator</h1>
             </div>
 
-            <div class="col-12 col-md-6">
+            <div class="col-12">
 
                 <div class="form-group">
-                    <label for="windowWidth">Window Width (px)</label>
-                    <input type="text" class="form-control" id="windowWidth">
+                    <label for="windowWidthAndHeight">Window Width x Height (in pixels)</label>
+                    <select class="form-control" id="windowWidthAndHeight">
+                        <option value="640x480">640 x 480</option>
+                        <option value="1024x768">1024 x 768</option>
+                        <option value="1280x960">1280 x 960</option>
+                        <option value="1600x1200">1600 x 1200</option>
+                    </select>
+                </div>
+
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="depthMin">Depth Min (in millimeters)</label>
+                    <span class="small">0mm - 3000mm</span>
+                    <input type="number" step="5" min="0" max="3000" id="depthMin" class="form-control" >
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="depthMax">Depth Max (in millimeters)</label>
+                    <span class="small">0mm - 3000mm</span>
+                    <input type="number" step="5" min="0" max="3000" id="depthMax" class="form-control" >
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="form-group">
+                    <label for="framerate">Framerate (in seconds)</label>
+                    <span class="small">0.01s - 3s</span>
+                    <input type="number" step="0.01" min="0.1" max="3" id="framerate" class="form-control"  >
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="form-group">
+                    <label for="depthThreshold">Depth Threshold (in millimeters)</label>
+                    <input type="number" step="1" min="0" max="300" id="depthThreshold" class="form-control"  >
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="form-group">
+                    <label for="depthPxQtyIgnore">Depth Quantity ignore (in pixels)</label>
+                    <input type="number" step="100" min="0" id="depthPxQtyIgnore" class="form-control"  >
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="form-group">
+                    <label for="depthPosterizeQuantity">Depth Posterize Quantity (layers)</label>
+                    <input type="number" step="1" min="1" max="20" id="depthPosterizeQuantity" class="form-control">
+                </div>
+            </div>
+            <div class="col-12">
+                <label>Border clipping (top, right, bottom, left; in pixels)</label>
+                <table id="border-setting-table">
+                    <tr>
+                        <td></td>
+                        <td>
+                            <input type="number" step="1" min="1" max="20" id="borderTop" class="form-control"></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><input type="number" step="1" min="1" max="20" id="borderLeft" class="form-control"></td>
+                        <td><div class="b0rder"></div></td>
+                        <td><input type="number" step="1" min="1" max="20" id="borderRight" class="form-control"></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <input type="number" step="1" min="1" max="20" id="borderBottom" class="form-control"></td>
+                        <td></td>
+                    </tr>
+                </table>
+
+            </div>
+            <div class="col-12">
+
+                <div class="form-group">
+                    <label for="colorMap">Color maps</label>
+                    <select class="form-control" id="colorMap">
+                        <option value="default">Default</option>
+                        <option value="inverted">Inverted</option>
+                        <option value="rainbow">Rainbow road</option>
+                    </select>
                 </div>
 
             </div>
         </div>
     </div>
 
-
-    Fenster-Auflösung in Pixel - window_width, window_height
-
-    Millimeter-Bereich von Kinect, wo der Sand ist - depth_mm_min, depth_mm_max
-
-    Frame-Rate - depth_frame_rate
-
-    Toleranz - depth_mm_threshold_diff
-
-    Menge an Pixel, die sich außerhalb des Bereichs befinden dürfen - depth_px_qty_ignore
-
-    Posterize Quantity - depth_posterize_qty
-
-    Border - Bild verkleiner (schwarzer Rad) - top, right, bottom, left
-
-    Color-Maps zum Auswählen - colormap
-
-
+    <!-- <footer>
+        <div>
+            Status will be shown here
+        </div>
+        <div>image</div>
+    </footer> -->
 
 </body>
 

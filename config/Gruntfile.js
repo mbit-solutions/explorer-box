@@ -5,7 +5,13 @@ module.exports = function (grunt) {
         concat: {
             "options": { "separator": ";" },
             "build": {
-                "src": ["node_modules/jquery/dist/jquery.js", "assets/js/index.js"],
+                "src": [
+                    "node_modules/jquery/dist/jquery.js",
+                    "assets/js/popper/popper.min.js",
+                    "assets/js/bootstrap/bootstrap.js",
+                    "assets/js/toastr/toastr.min.js",
+                    "assets/js/index.js"
+                ],
                 "dest": "dist/js/app.js"
             }
         },

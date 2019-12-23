@@ -16,9 +16,7 @@
     "grunt-contrib-sass": "^1.0.0",
     "grunt-contrib-uglify": "^4.0.1",
     "grunt-contrib-watch": "^1.1.0",
-    "http-server": "^0.12.0",
     "jquery": "^3.4.1",
-    "node-sass": "^4.13.0",
-    "popper.js": "^1.16.0"
+    "node-sass": "^4.13.0"
   }
 }
