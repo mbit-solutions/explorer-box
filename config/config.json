@@ -1,6 +1,3 @@
-<<<<<<< Updated upstream
-{"window_width":1280,"window_height":960,"depth_mm_min":1010,"depth_mm_max":1330,"depth_frame_rate":0.25,"depth_mm_threshold_diff":40,"depth_px_qty_ignore":11000,"depth_posterize_qty":15,"border_top":10,"border_right":215,"border_bottom":30,"border_left":400,"color_map":"inverted","picture_path":"config/sandbox.jpg","picture_frequency":0}
-=======
 {
     "window_width": 1024,
     "window_height": 768,
@@ -26,4 +23,3 @@
     "picture_path" : "config/sandbox.jpg",
     "picture_frequency" : -1
 }
->>>>>>> Stashed changes

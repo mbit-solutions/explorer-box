@@ -16,7 +16,7 @@ class Renderer:
                 (1.0, (255, 255, 255))
             ),
             "inverted":(
-                (0.0, (255, 255, 255)),
+                (0, (255, 255, 255)),
                 (0.05, (255, 0, 0)),                
                 (0.5, (255, 200, 0)),
                 (0.6, (0, 255, 0)),
@@ -36,7 +36,7 @@ class Renderer:
     def execute(self, depth_image):
         depth_image = self.interpolate(depth_image)
         depth_image = self.resize(depth_image)        
-        #depth_image = self.invert(depth_image)
+        depth_image = self.invert(depth_image)
         poster_image = self.posterize(depth_image, self.config.depth_posterize_qty)
         color_image = self.colorize(np.copy(poster_image)) 
         color_image = self.blur(color_image)
