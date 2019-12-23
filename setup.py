@@ -8,5 +8,5 @@ setup(name='ExplorerBoxAR',
       author='MBIT Solutions GmbH',
       author_email='office@mbit.at',
       url='www.mbit.at',
-      install_requires =['opencv-python', 'Pillow', 'numpy'],
+      install_requires =['opencv-python', 'Pillow', 'numpy', 'watchdog'],
      )
