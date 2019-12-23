@@ -38,7 +38,7 @@ class Config:
 		self.color_map='default'
 
 	def loadFromFile(self):
-		print('load config file')
+		print('load config file', flush=True)
 		self.reset=True
 		with open('config/config.json', 'r') as cfg_file:
 			data = json.load(cfg_file)
