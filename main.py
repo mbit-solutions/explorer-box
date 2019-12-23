@@ -12,6 +12,7 @@ config.loadFromFile()
 
 class ConfigChangeHandler(FileSystemEventHandler):
     def on_modified(self, event):
+        print("griasihna"+event.src_path)
         if event.src_path == 'config/config.json':
             print('detected change in configfile')
             config.loadFromFile()
