@@ -10143,7 +10143,7 @@ body {
   text-align: center;
 }
 #border-setting-table td input {
-  width: auto;
+  max-width: 100px;
   margin: auto;
 }
 #border-setting-table td .b0rder {
