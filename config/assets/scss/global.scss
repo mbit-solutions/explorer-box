@@ -1,0 +1,17 @@
+
+
+#border-setting-table {
+    td {
+        text-align:center;
+        input {
+            width: auto;
+            margin: auto;
+        }
+        .b0rder {
+            display:block;
+            width: 200px;
+            height: 100px;
+            border: 2px solid gray;
+        }
+    }
+}
