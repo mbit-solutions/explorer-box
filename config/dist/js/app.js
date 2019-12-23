@@ -15138,7 +15138,6 @@ return jQuery;
     var scheduleSaveConfigurationTimeout = null;
 
     function scheduleSaveConfiguration() {
-        console.log("schedule");
         if (scheduleSaveConfigurationTimeout) {
             clearTimeout(scheduleSaveConfigurationTimeout);
         }
