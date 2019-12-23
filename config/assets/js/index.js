@@ -1,7 +1,7 @@
 $(function () {
     var configFileName = "config.json";
     var configuration;
-    var nodeServerUrl = "http://localhost:1337/";
+    var nodeServerUrl = "http://192.168.44.115:1337/";
 
     var scheduleSaveConfigurationTimeout = null;
 

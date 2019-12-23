@@ -15132,7 +15132,7 @@ return jQuery;
 ;$(function () {
     var configFileName = "config.json";
     var configuration;
-    var nodeServerUrl = "http://localhost:1337/";
+    var nodeServerUrl = "http://192.168.44.115:1337/";
 
     var scheduleSaveConfigurationTimeout = null;
 
@@ -15182,9 +15182,6 @@ return jQuery;
             type: "POST",
             url: nodeServerUrl,
             data: { "data": data },
-            success: function(data) {
-                console.log("saved successfully");
-            },
             fail: function (error) {
                 console.error(error);
             },
