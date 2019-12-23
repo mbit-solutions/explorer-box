@@ -122,7 +122,6 @@ $(function () {
 
     function getImage() {
         var image = configuration.picture_path.replace("config/", "") + "?rand=" + performance.now();
-        console.log("getImage", image);
         $("#preview-img").attr("src", image);
     }
 
