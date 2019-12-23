@@ -15147,7 +15147,7 @@ return jQuery;
 
     //load configuration from config file and initialize inputs
     function loadConfiguration() {
-        $.getJSON(configFileName, function (data) {
+        $.getJSON(configFileName + "?rand=" + performance.now(), function (data) {
 
             if (data) {
                 configuration = data;

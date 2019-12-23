@@ -16,7 +16,7 @@ $(function () {
 
     //load configuration from config file and initialize inputs
     function loadConfiguration() {
-        $.getJSON(configFileName, function (data) {
+        $.getJSON(configFileName + "?rand=" + performance.now(), function (data) {
 
             if (data) {
                 configuration = data;
@@ -24,7 +24,7 @@ $(function () {
                 $("#windowWidthAndHeight").val(data.window_width + "x" + data.window_height);
                 $("#depthMin").val(data.depth_mm_min);
                 $("#depthMax").val(data.depth_mm_max);
-                $("#framerate").val(data.depth_frame_rate); //todo comma values???
+                $("#framerate").val(data.depth_frame_rate);
                 $("#depthThreshold").val(data.depth_mm_threshold_diff);
                 $("#depthPxQtyIgnore").val(data.depth_px_qty_ignore);
                 $("#depthPosterizeQuantity").val(data.depth_posterize_qty);
