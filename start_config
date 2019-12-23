@@ -1,0 +1,4 @@
+#!/bin/bash
+cd config
+node server &
+http-server > server_logs.txt
