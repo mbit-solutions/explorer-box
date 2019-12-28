@@ -1,8 +1,5 @@
-$(function () {
-    var configFileName = "config.json";
-    var logFileName = "logs.txt";
-    var configuration;
-    var nodeServerUrl = "http://10.42.0.1:1337/";
+$(function () {            
+    var configuration;   
 
     var scheduleSaveConfigurationTimeout = null;
 
@@ -16,7 +13,7 @@ $(function () {
 
     //load configuration from config file and initialize inputs
     function loadConfiguration() {
-        $.getJSON(configFileName + "?rand=" + performance.now(), function (data) {
+        $.getJSON("config?rand=" + performance.now(), function (data) {
 
             if (data) {
                 configuration = data;
@@ -53,18 +50,14 @@ $(function () {
         //validate and normalize
         buildConfiguration();
         normalizeConfiguration();
-
-        var data = JSON.stringify(configuration);
-
+        
         //call nodeJs Server, that writes into file
         $.ajax({
             type: "POST",
-            url: nodeServerUrl,
-            data: { "data": data },
-            fail: function (error) {
-                console.error(error);
-            },
-            dataType: "text/json"
+            url: "config",
+            data: JSON.stringify(configuration),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
           });
     }
 
@@ -126,7 +119,7 @@ $(function () {
     }
 
     function getImage() {
-        var image = configuration.picture_path.replace("config/", "") + "?rand=" + performance.now();
+        var image = "image?rand=" + performance.now();
         $("#preview-img").attr("src", image);
     }
 
@@ -134,7 +127,7 @@ $(function () {
 
     function loadLogs()
     {
-        $.get(logFileName+"?nocache="+performance.now(), null, function(data) {
+        $.get("logs?nocache="+performance.now(), null, function(data) {
             if(data)
             {
                 $("#logWindow").val(data);

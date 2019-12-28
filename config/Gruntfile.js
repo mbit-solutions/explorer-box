@@ -12,13 +12,13 @@ module.exports = function (grunt) {
                     "assets/js/toastr/toastr.min.js",
                     "assets/js/index.js"
                 ],
-                "dest": "dist/js/app.js"
+                "dest": "public/dist/js/app.js"
             }
         },
         uglify: {
             my_target: {
                 files: {
-                    'dist/js/app.min.js': ['dist/js/app.js']
+                    'public/dist/js/app.min.js': ['public/dist/js/app.js']
                 }
             }
         },
@@ -29,7 +29,7 @@ module.exports = function (grunt) {
                     style: 'expanded'
                 },
                 files: {
-                    'dist/css/index.css': 'assets/scss/index.scss',
+                    'public/dist/css/index.css': 'assets/scss/index.scss',
                 }
             }
         },
@@ -38,9 +38,9 @@ module.exports = function (grunt) {
             target: {
                 files: [{
                     expand: true,
-                    cwd: 'dist/css',
+                    cwd: 'public/dist/css',
                     src: ['*.css', '!*.min.css'],
-                    dest: 'dist/css',
+                    dest: 'public/dist/css',
                     ext: '.min.css'
                 }]
             }
@@ -67,5 +67,5 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-cssmin');
 
     // Task definitions
-    grunt.registerTask('default', ['concat', 'uglify', 'sass', 'cssmin', 'watch']);
+    grunt.registerTask('default', ['concat', 'uglify', 'sass', 'cssmin']);
 };

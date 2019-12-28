@@ -10,13 +10,16 @@
   "license": "ISC",
   "dependencies": {
     "bootstrap": "^4.4.1",
+    "express": "^4.17.1",   
+    "jquery": "^3.4.1",
+    "node-sass": "^4.13.0"
+  },
+  "devDependencies": {
     "grunt": "^1.0.4",
     "grunt-contrib-concat": "^1.0.1",
     "grunt-contrib-cssmin": "^3.0.0",
     "grunt-contrib-sass": "^1.0.0",
     "grunt-contrib-uglify": "^4.0.1",
-    "grunt-contrib-watch": "^1.1.0",
-    "jquery": "^3.4.1",
-    "node-sass": "^4.13.0"
+    "grunt-contrib-watch": "^1.1.0"
   }
 }

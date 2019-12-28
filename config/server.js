@@ -1,51 +1,46 @@
-var http = require('http');
-var qs = require('querystring');
 var fs = require("fs");
+var path = require('path');
+var express = require('express');
+
 var configFileName = "config.json";
+var imageFileName = "sandbox.jpg";
+var logFileName = "logs.txt";
+var port = 3000;
 
-http.createServer(function (req, res) {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Request-Method', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET, POST');
-    res.setHeader('Access-Control-Allow-Headers', '*');
-    if (req.method === 'OPTIONS') {
-        res.writeHead(200);
+var app = express();
+app.use(express.json());
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.get('/logs', function(req, res) {
+    fs.readFile(logFileName, (err, data) => {        
+        if (err) throw err;  
+        res.send(data);
+    }); 
+});
+
+app.get('/image', function(req, res){
+    fs.readFile(imageFileName, (err, data) => {        
+        if (err) throw err;  
+        res.send(data);
+    }); 
+});
+
+app.get('/config', function(req, res) {
+    fs.readFile(configFileName, (err, data) => {
+        if (err) throw err;             
+        res.json(JSON.parse(data));
+    });    
+});
+
+app.post('/config', function(req, res){
+    var json = JSON.stringify(req.body);
+    fs.writeFile(configFileName, json, function (err) {
+        if (err) throw err;         
+        console.log('Data written successfully!', json);
         res.end();
-        return;
-    }
+    });
+});
 
-    if (req.method == 'POST') {
-        var body = '';
-
-        req.on('data', function (data) {
-            body += data;
-
-            // Too much POST data, kill the connection!
-            // 1e6 === 1 * Math.pow(10, 6) === 1 * 1000000 ~~~ 1MB
-            if (body.length > 1e6)
-                request.connection.destroy();
-        });
-
-        req.on('end', function () {
-            var post = qs.parse(body);
-
-            fs.writeFile(configFileName, post.data, function (err) {
-                if (err) {
-                    return console.error(err);
-                }
-                console.log("Data written successfully!", post.data);
-            });
-
-            res.writeHead(200, { 'Content-Type': 'text/plain' });
-            res.end();
-
-        });
-    }
-    else {
-        res.writeHead(200, { 'Content-Type': 'text/plain' });
-        res.end();
-    }
-
-    
-
-}).listen(1337, "10.42.0.1");
+app.listen(port, function(){
+    console.log('Listening on port ' + port);
+})
