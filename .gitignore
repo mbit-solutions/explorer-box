@@ -108,3 +108,6 @@ venv.bak/
 
 .vscode/settings.json
 *.jpg
+
+config/logs.txt
+config/server_logs.txt
