@@ -1,4 +1,8 @@
-$(function () {            
+$(function () {        
+    toastr.options.closeButton = true;
+    toastr.options.progressBar = true;
+    toastr.options.timeOut = 1000;
+
     var configuration;   
 
     var scheduleSaveConfigurationTimeout = null;
@@ -59,6 +63,8 @@ $(function () {
             contentType: "application/json; charset=utf-8",
             dataType: "json",
           });
+
+        toastr.success('Config saved')
     }
 
     function buildConfiguration() {

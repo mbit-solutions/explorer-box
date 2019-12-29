@@ -13,14 +13,22 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/logs', function(req, res) {
     fs.readFile(logFileName, (err, data) => {        
-        if (err) throw err;  
+        if (err) 
+        {
+            console.error(err);
+            res.end();
+        }  
         res.send(data);
     }); 
 });
 
 app.get('/image', function(req, res){
     fs.readFile(imageFileName, (err, data) => {        
-        if (err) throw err;  
+        if (err) 
+        {
+            console.error(err);
+            res.end();
+        }    
         res.send(data);
     }); 
 });

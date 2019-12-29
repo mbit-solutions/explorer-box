@@ -1,6 +1,35 @@
 body {
     padding-bottom: 60px;
+
+    .logo-dark {
+        display: none;
+    }
 }
+
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color:rgb(30,30,30);
+        color:rgb(255,255,255);
+
+        .logo-dark {
+            display:block;
+        }
+    
+        .form-control {
+            background-color: rgb(30,30,30);
+            color:rgb(200,200,200);
+    
+            &:focus{
+                background-color: rgb(30,30,30);
+                color:rgb(200,200,200);
+            }
+    
+            &:disabled{
+                background-color: rgb(60,60,60);
+            }
+        }
+    } 
+  }
 
 #border-setting-table {
     td {
@@ -33,6 +62,12 @@ footer {
 
     box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
     align-items:center;
+
+    .disclaimer {
+        img {
+            height: 50px;
+        }
+    }
 
     > div {
         flex: 1;

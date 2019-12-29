@@ -5,35 +5,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Explorerbox - Configurator</title>
+    <title>Explorer Box AR+ - Configurator</title>
     <link href="dist/css/index.min.css" rel="stylesheet" media="screen" />    
 </head>
 
 <body>
-
     <div class="container">
+        <div class="row mt-2 mb-3">
+            <div class="col-md-2 col-4 logo-dark">
+                <img src="img/explorer_box_SW.png" class="img-fluid" />
+            </div>
+            <div class="col">                
+                <h1>Configurator</h1>
+            </div>
+        </div>
         <div class="row">
-            <div class="col-12 pt-3 pb-3">
-                <h1>Explorerbox - Configurator</h1>
-            </div>
-
-
-            <div class="col-12 col-md-6">
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="enablePosterize">
-                    <label class="form-check-label" for="enablePosterize">Enable posterize</label>
-                </div>
-            </div>
-
-            <div class="col-12 col-md-6">
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="enableContourize">
-                    <label class="form-check-label" for="enableContourize">Enable contourize</label>
-                </div>
-            </div>
-            
             <div class="col-12">
-
+                <div class="form-group">
+                    <label for="colorMap">Color maps</label>
+                    <select class="form-control" id="colorMap">
+                        <option value="default">Default</option>
+                        <option value="inverted">Inverted</option>
+                        <option value="rainbow">Rainbow</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-12 col-md-6">
                 <div class="form-group">
                     <label for="windowWidthAndHeight">Window Width x Height (in pixels)</label>
                     <select class="form-control" id="windowWidthAndHeight">
@@ -43,8 +40,15 @@
                         <option value="1600x1200">1600 x 1200</option>
                     </select>
                 </div>
-
             </div>
+            <div class="col-12 col-md-6">
+                <div class="form-group">
+                    <label for="framerate">Framerate (in seconds)</label>
+                    <span class="small">0.01s - 1s</span>
+                    <input type="number" step="0.01" min="0.01" max="1" id="framerate" class="form-control">
+                </div>
+            </div>       
+                       
             <div class="col-12 col-md-6">
                 <div class="form-group">
                     <label for="depthMin">Depth Min (in millimeters)</label>
@@ -59,29 +63,36 @@
                     <input type="number" step="1" min="0" max="3000" id="depthMax" class="form-control">
                 </div>
             </div>
-            <div class="col-12">
-                <div class="form-group">
-                    <label for="framerate">Framerate (in seconds)</label>
-                    <span class="small">0.01s - 3s</span>
-                    <input type="number" step="0.01" min="0.1" max="3" id="framerate" class="form-control">
-                </div>
-            </div>
-            <div class="col-12">
+           
+            <div class="col-12 col-md-6">
                 <div class="form-group">
                     <label for="depthThreshold">Depth Threshold (in millimeters)</label>
                     <input type="number" step="1" min="0" max="300" id="depthThreshold" class="form-control">
                 </div>
             </div>
-            <div class="col-12">
+            <div class="col-12 col-md-6">
                 <div class="form-group">
                     <label for="depthPxQtyIgnore">Depth Quantity ignore (in pixels)</label>
                     <input type="number" step="100" min="0" id="depthPxQtyIgnore" class="form-control">
                 </div>
             </div>
+            <div class="col-12 col-md-6 mb-2">
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="enablePosterize">
+                    <label class="form-check-label" for="enablePosterize">Enable posterize</label>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-6 mb-2">
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="enableContourize">
+                    <label class="form-check-label" for="enableContourize">Enable contourize</label>
+                </div>
+            </div>
             <div class="col-12">
                 <div class="form-group">
                     <label for="depthPosterizeQuantity">Depth Posterize Quantity (layers)</label>
-                    <input type="number" step="1" min="1" max="20" id="depthPosterizeQuantity" class="form-control">
+                    <input type="number" step="1" min="1" max="100" id="depthPosterizeQuantity" class="form-control">
                 </div>
             </div>
             <div class="col-12">
@@ -90,37 +101,26 @@
                     <tr>
                         <td></td>
                         <td>
-                            <input type="number" step="1" min="0" max="100" id="borderTop" class="form-control"></td>
+                            <input type="number" step="1" min="0" max="200" id="borderTop" class="form-control"></td>
                         <td></td>
                     </tr>
                     <tr>
-                        <td><input type="number" step="1" min="0" max="100" id="borderLeft" class="form-control"></td>
+                        <td><input type="number" step="1" min="0" max="200" id="borderLeft" class="form-control"></td>
                         <td>
                             <div class="b0rder"></div>
                         </td>
-                        <td><input type="number" step="1" min="0" max="100" id="borderRight" class="form-control"></td>
+                        <td><input type="number" step="1" min="0" max="200" id="borderRight" class="form-control"></td>
                     </tr>
                     <tr>
                         <td></td>
                         <td>
-                            <input type="number" step="1" min="0" max="100" id="borderBottom" class="form-control"></td>
+                            <input type="number" step="1" min="0" max="200" id="borderBottom" class="form-control"></td>
                         <td></td>
                     </tr>
                 </table>
 
             </div>
-            <div class="col-12">
-
-                <div class="form-group">
-                    <label for="colorMap">Color maps</label>
-                    <select class="form-control" id="colorMap">
-                        <option value="default">Default</option>
-                        <option value="inverted">Inverted</option>
-                        <option value="rainbow">Rainbow</option>
-                    </select>
-                </div>
-
-            </div>
+           
 
 
             <div class="col-12">
@@ -136,7 +136,7 @@
 
     <footer>
         <div class="disclaimer">
-            poweredy by MBIT
+            powered by MBIT
         </div>
         <div class="preview-image">
             <button type="button" class="btn btn-outline-secondary btn-preview-image">Show Image</button>

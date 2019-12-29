@@ -111,3 +111,5 @@ venv.bak/
 
 config/logs.txt
 config/server_logs.txt
+
+**/.sass-cache
